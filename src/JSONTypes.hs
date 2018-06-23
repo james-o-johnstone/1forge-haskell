@@ -2,10 +2,10 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 module JSONTypes (
-    Conversion
-    , MarketStatus
-    , Quota
-    , Quotes
+    Conversion(..)
+    , MarketStatus(..)
+    , Quota(..)
+    , Quotes(..)
     ) where
 
 import Data.Aeson
