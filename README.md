@@ -4,4 +4,4 @@ A 1forge client for Haskell which uses the 1forge api: https://1forge.com/forex-
 
 An API key is required which can be obtained from https://1forge.com/forex-data-api and entered in the apiKey variable in src/Client.hs.
 
-See Main.hs for example usage.
+See app/Main.hs for example usage.
