@@ -5,7 +5,7 @@ module JSONTypes (
     Conversion(..)
     , MarketStatus(..)
     , Quota(..)
-    , Quotes(..)
+    , Quote(..)
     ) where
 
 import Data.Aeson
@@ -26,7 +26,7 @@ data Quota = Quota {
 
 instance FromJSON Quota
 
-data Quotes = Quotes {
+data Quote = Quote {
     bid :: Float
     , symbol :: String
     , ask :: Float
@@ -34,7 +34,7 @@ data Quotes = Quotes {
     , timestamp :: Int
     } deriving (Generic, Show)
 
-instance FromJSON Quotes
+instance FromJSON Quote
 
 data Conversion = Conversion {
     value :: Float
