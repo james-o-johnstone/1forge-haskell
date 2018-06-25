@@ -11,7 +11,7 @@ main = do
     symbols <- getSymbols
     print symbols
 
-    quotes <- getQuotes ["GBPBTC", "BTCETH"]
+    quotes <- getQuotes ["BTCGBP", "BTCETH"]
     print quotes
 
     conversion <- convert "BTC" "GBP" 1.234

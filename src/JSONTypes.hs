@@ -27,17 +27,17 @@ data Quota = Quota {
 instance FromJSON Quota
 
 data Quote = Quote {
-    bid :: Float
+    bid :: Double
     , symbol :: String
-    , ask :: Float
-    , price :: Float
+    , ask :: Double
+    , price :: Double
     , timestamp :: Int
     } deriving (Generic, Show)
 
 instance FromJSON Quote
 
 data Conversion = Conversion {
-    value :: Float
+    value :: Double
     , text :: String
     , cTimestamp :: Int
 } deriving Show

@@ -22,7 +22,7 @@ apiKey = "YOUR API KEY HERE" -- obtain an API key from https://1forge.com/forex-
 quota :: IO (Maybe Quota)
 quota = do
     response <- fetch "quota?cache=false"
-    return (getResponseBody response :: Maybfetch Quota)
+    return (getResponseBody response :: Maybe Quota)
 
 getSymbols :: IO (Maybe [String])
 getSymbols = do
