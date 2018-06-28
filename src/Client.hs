@@ -35,14 +35,9 @@ getQuotes pairs = do
     return (getResponseBody response :: Maybe [Quote])
 
 getQuote :: String -> IO (Maybe Quote)
-getQuote pairs = do 
-    response <- fetch $ "quotes?pairs=" ++ pairs
-    return (getSingleQuote (getResponseBody response :: Maybe [Quote]))
-
-getSingleQuote :: Maybe [Quote] -> Maybe Quote
-getSingleQuote quotes = do
-    q <- quotes
-    return (head q)
+getQuote pair = do
+    quotes <- getQuotes [pair]
+    return (head <$> quotes)
 
 marketIsOpen :: IO (Maybe MarketStatus)
 marketIsOpen = do
