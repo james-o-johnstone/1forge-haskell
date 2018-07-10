@@ -1,7 +1,6 @@
 module Main where
 
-import Client
-import JSONTypes
+import Client (marketIsOpen, getSymbols, getQuotes, convert, quota)
 
 main :: IO ()
 main = do

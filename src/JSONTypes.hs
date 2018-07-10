@@ -1,33 +1,33 @@
 {-# LANGUAGE DeriveGeneric #-}
 {-# LANGUAGE OverloadedStrings #-}
 
-module JSONTypes (
-    Conversion(..)
+module JSONTypes
+    ( Conversion(..)
     , MarketStatus(..)
     , Quota(..)
     , Quote(..)
     ) where
 
-import Data.Aeson
-import GHC.Generics
+import Data.Aeson (defaultOptions, fieldLabelModifier, FromJSON (..), genericParseJSON)
+import GHC.Generics (Generic)
 
-data MarketStatus = MarketStatus { 
-    market_is_open :: Bool
-} deriving (Generic, Show)
+data MarketStatus = MarketStatus
+    { market_is_open :: Bool
+    } deriving (Generic, Show)
 
 instance FromJSON MarketStatus
 
-data Quota = Quota {
-    quota_used :: Int
+data Quota = Quota
+    { quota_used :: Int
     , quota_limit :: Int
     , quota_remaining :: Int
     , hours_until_reset :: Int
-} deriving (Generic, Show)
+    } deriving (Generic, Show)
 
 instance FromJSON Quota
 
-data Quote = Quote {
-    bid :: Double
+data Quote = Quote
+    { bid :: Double
     , symbol :: String
     , ask :: Double
     , price :: Double
@@ -36,14 +36,11 @@ data Quote = Quote {
 
 instance FromJSON Quote
 
-data Conversion = Conversion {
-    value :: Double
-    , text :: String
+data Conversion = Conversion
+    { cvalue :: Double
+    , ctext :: String
     , cTimestamp :: Int
-} deriving Show
+    } deriving (Generic, Show)
 
 instance FromJSON Conversion where
-    parseJSON = withObject "Conversion" $ \v -> Conversion
-        <$> v .: "value"
-        <*> v .: "text"
-        <*> v .: "timestamp"
+    parseJSON = genericParseJSON defaultOptions { fieldLabelModifier = drop 1 }

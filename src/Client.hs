@@ -1,7 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Client (
-    convert
+module Client
+    ( convert
     , getQuote
     , getQuotes
     , getSymbols
@@ -9,15 +9,18 @@ module Client (
     , quota
     ) where
 
-import Data.List
+import Data.List (intercalate)
 
-import Data.Aeson   
-import Network.HTTP.Simple
+import Data.Aeson (FromJSON)
+import Network.HTTP.Simple (getResponseBody, httpJSON, parseRequest, Response)
 
 import JSONTypes
 
+baseURL :: String
 baseURL = "https://forex.1forge.com/1.0.3/"
-apiKey = "YOUR API KEY HERE" -- obtain an API key from https://1forge.com/forex-data-api
+
+apiKey :: String
+-apiKey = "YOUR API KEY HERE" -- obtain an API key from https://1forge.com/forex-data-api
 
 quota :: IO (Maybe Quota)
 quota = do
